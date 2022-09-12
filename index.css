@@ -108,9 +108,13 @@ select {
   gap: var(--gap, 1rem);
 }
 
+/* means choose all elements (second *) that have an adjacent sibling (+) 
+   of any element (first *) with no extra specificity */
+/* can alternatively be written as *:where(:not(:first-child)) */
+/* the "where" is where the specificity is not added in the alternative method */
+/* if specifity is desired, "is" is used instead of "where" */
 .flow > * + * {
   margin-top: var(--flow-space, 1rem);
-  outline: 1px solid red;
 }
 
 .container {
@@ -240,4 +244,21 @@ on the page for screen readers*/
   margin-right: 0.5em;
   font-weight: 700;
   color: hsl(0, 0%, 50%);
+}
+
+/* -------------------------- */
+/*         Components         */
+/* -------------------------- */
+.large-button {
+  padding: 0 2em;
+  /* can be done with display: flex and 
+  justify-content/align-items but it takes
+  an extra line */
+  display: grid;
+  place-items: center;
+  /* adjusts the size to a box which has a
+  1:1 aspect ratio */
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: 1;
 }
