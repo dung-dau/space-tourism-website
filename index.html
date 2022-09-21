@@ -21,6 +21,7 @@
     />
 
     <title>Frontend Mentor | Space tourism website</title>
+    <script src="index.js" defer></script>
   </head>
   <body class="home">
     <header class="primary-header flex">
@@ -31,8 +32,25 @@
           class="logo"
         />
       </div>
-      <!-- <nav>
-        <ul class="primary-navigation underline-indicators flex">
+      <!-- aria-controls attribute identifies the element (or elements) 
+           whose contents or presence are controlled by the element on 
+           which this attribute is set 
+      -->
+      <!-- this includes things like interactive or input control, be it 
+           a checkbox, radio button, tab panel, icon, toggles
+      -->
+      <button class="mobile-nav-toggle" aria-controls="primary-navigation">
+        <!-- The aria-expanded attribute is set on an element to indicate 
+             if a control is expanded or collapsed, and whether or not its 
+             child elements are displayed or hidden. 
+        -->
+        <span class="sr-only" aria-expanded="false">Menu</span>
+      </button>
+      <nav>
+        <ul
+          class="primary-navigation underline-indicators flex"
+          data-visible="false"
+        >
           <li>
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2 active"
@@ -62,7 +80,7 @@
             >
           </li>
         </ul>
-      </nav> -->
+      </nav>
     </header>
 
     <div class="grid-container grid-container--home">
