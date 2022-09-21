@@ -8,12 +8,12 @@
   --clr-white: 0 0% 100%;
 
   /* font sizes */
-  --fs-900: 9.375rem;
-  --fs-800: 6.25rem;
-  --fs-700: 3.5rem;
-  --fs-600: 2rem;
+  --fs-900: clamp(5rem, 7vw + 1rem, 9.375rem);
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-400: 1.125rem;
+  --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
 
@@ -21,6 +21,28 @@
   --ff-serif: 'Bellefair', serif;
   --ff-sans-cond: 'Barlow Condensed', sans-serif;
   --ff-sans-normal: 'Barlow', sans-serif;
+}
+
+/* tablet styles */
+@media (min-width: 35em) {
+  :root {
+    /* font sizes */
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+/* mobile styles */
+@media (min-width: 45em) {
+  :root {
+    /* font sizes */
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-400: 1.125rem;
+  }
 }
 
 /* -------------------------- */
@@ -65,6 +87,8 @@ body {
   background-color: hsl(var(--clr-dark));
   line-height: 1.5;
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 /* make images easier to work with */
@@ -108,6 +132,10 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.block-display {
+  display: block;
+}
+
 /* means choose all elements (second *) that have an adjacent sibling (+) 
    of any element (first *) with no extra specificity */
 /* can alternatively be written as *:where(:not(:first-child)) */
@@ -121,6 +149,47 @@ select {
   padding-inline: 2em;
   margin-inline: auto;
   max-width: 80rem;
+}
+
+.grid-container {
+  border: 5px solid limegreen;
+  display: grid;
+  text-align: center;
+  place-items: center;
+  padding-inline: 1rem;
+}
+
+/* ch means characters */
+.grid-container * {
+  max-width: 50ch;
+}
+
+/* needs to be put into a separate media query after 
+   the original grid container and not before */
+@media (min-width: 45em) {
+  .grid-container {
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
+        1rem,
+        1fr
+      );
+    text-align: left;
+  }
+
+  .grid-container > *:first-child {
+    grid-column: 2;
+    outline: 1px solid red;
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+    outline: 1px solid yellow;
+  }
+
+  .grid-container--home {
+    padding-bottom: 6rem;
+    align-items: end;
+  }
 }
 
 /* visually hides content for sighted users but keeps it 
@@ -162,10 +231,6 @@ on the page for screen readers*/
 
 .text-white {
   color: hsl(var(--clr-white));
-}
-
-.example-component {
-  background-color: hsl(var(--clr-light) / 20%);
 }
 
 /* -------------------------- */
@@ -250,12 +315,13 @@ on the page for screen readers*/
 /*         Components         */
 /* -------------------------- */
 .large-button {
+  font-size: 2rem;
   position: relative;
   padding: 0 2em;
   /* can be done with display: flex and 
   justify-content/align-items but it takes
   an extra line */
-  display: grid;
+  display: inline-grid;
   place-items: center;
   /* adjusts the size to a box which has a
   1:1 aspect ratio */
@@ -362,4 +428,10 @@ button:focus {
 .number-indicators > [aria-selected='true'] {
   color: hsl(var(--clr-dark));
   background-color: hsl(var(--clr-white));
+}
+
+/* ------------------------ */
+/* Page Specific background */
+/* ------------------------ */
+.home {
 }
