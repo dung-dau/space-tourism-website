@@ -154,9 +154,8 @@ select {
 }
 
 .grid-container {
-  border: 5px solid limegreen;
-  display: grid;
   text-align: center;
+  display: grid;
   place-items: center;
   padding-inline: 1rem;
 }
@@ -170,22 +169,17 @@ select {
    the original grid container and not before */
 @media (min-width: 45em) {
   .grid-container {
-    column-gap: var(--container-gap, 2rem);
-    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
-        1rem,
-        1fr
-      );
     text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(1rem, 1fr);
   }
 
   .grid-container > *:first-child {
     grid-column: 2;
-    outline: 1px solid red;
   }
 
   .grid-container > *:last-child {
     grid-column: 3;
-    outline: 1px solid yellow;
   }
 
   .grid-container--home {
@@ -319,27 +313,27 @@ on the page for screen readers*/
 .large-button {
   font-size: 2rem;
   position: relative;
-  padding: 0 2em;
+  z-index: 1;
   /* can be done with display: flex and 
   justify-content/align-items but it takes
   an extra line */
   display: inline-grid;
+  padding: 0 2em;
+  border-radius: 50%;
   place-items: center;
   /* adjusts the size to a box which has a
   1:1 aspect ratio */
   aspect-ratio: 1;
-  border-radius: 50%;
   text-decoration: none;
-  z-index: 1;
 }
 
 .large-button::after {
   content: '';
   position: absolute;
   z-index: -1;
-  background: hsl(var(--clr-white) / 0.15);
   width: 100%;
   height: 100%;
+  background: hsl(var(--clr-white) / 0.15);
   border-radius: 50%;
   opacity: 0%;
   transition: opacity 500ms linear, transform 500ms ease-in-out;
@@ -367,17 +361,18 @@ on the page for screen readers*/
 @media (max-width: 35rem) {
   .primary-navigation {
     --underline-gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-direction: column;
     /* takes the element out of the flow of the HTML document */
     position: fixed;
-    /* shorthand for top right bottom left properties */
-    inset: 0 0 0 30%;
     /* puts the navigation above the explore button */
     z-index: 2;
+    inset: 0 0 0 30%;
+    list-style: none;
+    /* shorthand for top right bottom left properties */
     padding: min(20rem, 10vh) 2rem;
+    margin: 0;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
   }
 
   .primary-navigation[data-visible='true'] {
@@ -393,10 +388,19 @@ on the page for screen readers*/
     background: transparent;
     background-image: url(./assets/shared/icon-hamburger.svg);
     background-repeat: no-repeat;
+    background-position: center;
     width: 1.5rem;
     aspect-ratio: 1;
     border: 0;
-    transform: translateX(100%);
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url(./assets/shared/icon-close.svg);
+  }
+
+  .mobile-nav-toggle:focus-visible {
+    outline: 5px solid white;
+    outline-offset: 5px;
   }
 
   .primary-navigation.underline-indicators * {
