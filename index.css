@@ -345,13 +345,37 @@ on the page for screen readers*/
   transform: scale(1.5);
 }
 
+/* primary-header */
+
+.logo {
+  margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+  /* pushes the navbar to the right side of the page */
+  justify-content: space-between;
+  /* keeps the logo vertically centered */
+  align-items: center;
+}
+
 .primary-navigation {
+  /* adds space between the navigation elements */
+  --gap: 3rem;
   --underline-gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
   background: hsl(var(--clr-white) / 0.1);
   backdrop-filter: blur(20px);
+}
+
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a > span {
+  font-weight: 700;
+  margin-right: 1em;
 }
 
 .mobile-nav-toggle {
@@ -408,18 +432,23 @@ on the page for screen readers*/
   }
 }
 
-.primary-navigation a {
-  text-decoration: none;
-}
-
-.primary-navigation a > span {
-  font-weight: 700;
-  margin-right: 1em;
-}
-
 .underline-indicators * {
   padding: var(--underline-gap, 1rem) 0;
   cursor: pointer;
+}
+
+/* medium screen sizes */
+@media (min-width: 35em) and (max-width: 45em) {
+
+  .primary-navigation {
+    /* makes it so that the navigation items are not at the edge of the translucent box */
+    padding-inline: 3rem;
+  }
+
+  /* removes the numbers from the navigation menu */
+  .primary-navigation a > span {
+    display: none;
+  }
 }
 
 .underline-indicators li > *,
