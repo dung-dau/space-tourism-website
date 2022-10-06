@@ -437,8 +437,14 @@ on the page for screen readers*/
   cursor: pointer;
 }
 
+@media (min-width: 35em) {
+  .primary-navigation {
+    padding-inline: clamp(3rem, 100vw, 7rem);
+  }
+}
+
 /* medium screen sizes */
-@media (min-width: 35em) and (max-width: 45em) {
+@media (min-width: 35em) and (max-width: 44.999em) {
 
   .primary-navigation {
     /* makes it so that the navigation items are not at the edge of the translucent box */
@@ -448,6 +454,35 @@ on the page for screen readers*/
   /* removes the numbers from the navigation menu */
   .primary-navigation a > span {
     display: none;
+  }
+}
+
+@media (min-width: 44.999em) {
+  /* creates the decorative line which is just
+  a div with a really small size with its
+  border showing */
+  .primary-header::after {
+    content: '';
+    display: block;
+    position: relative;
+    height: 1px;
+    width: 100%;
+    /* moves the decorative line so that it
+    covers some of the empty space on the
+    navigation menu */
+    margin-right: -3rem;
+    background: hsl(var(--clr-white) / .25);
+  }
+
+  /* responsible for creating the decorative 
+  line on the navigation menu */
+  nav {
+    order: 2;
+  }
+
+  .primary-navigation {
+    margin-block: 2rem;
+    /* padding-inline: 7rem; */
   }
 }
 
@@ -476,11 +511,11 @@ button:focus {
 
 .dot-indicators > * {
   cursor: pointer;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  padding: 0.5em;
   border: 0;
+  border-radius: 50%;
+  padding: 0.5em;
   background-color: hsl(var(--clr-white) / 0.25);
+  aspect-ratio: 1;
 }
 
 .dot-indicators > *:hover,
@@ -494,9 +529,9 @@ button:focus {
 
 .number-indicators > button {
   cursor: pointer;
+  border-radius: 50%;
   padding: 0 1em;
   aspect-ratio: 1;
-  border-radius: 50%;
   border: 2px solid hsl(var(--clr-white) / 0.25);
 }
 
