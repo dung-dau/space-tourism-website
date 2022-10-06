@@ -202,6 +202,28 @@ on the page for screen readers*/
   border: 0;
 }
 
+/* a skip to content link for keyboard users */
+.skip-to-content {
+  /* takes the box out of the flow of the document so
+  it can translate itself in and out of the page */
+  position: absolute;
+  z-index: 9999;
+  background: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+  padding: .5em 1em;
+  margin-inline: auto;
+  /* moves the box out of the page by default */
+  transform: translateY(-100%);
+  /* transitions for the box */
+  transition: transform 500ms ease-in-out;
+}
+
+/* transitions the box into the website when it is
+focused on (usually by keyboard) */
+.skip-to-content:focus {
+  transform: translateX(0);
+}
+
 /* -------------------------- */
 /*           Colors           */
 /* -------------------------- */

@@ -24,6 +24,7 @@
     <script src="index.js" defer></script>
   </head>
   <body class="home">
+    <a class="skip-to-content" href="#main">Skip to content</a>
     <header class="primary-header flex">
       <div>
         <img
@@ -52,24 +53,26 @@
           data-visible="false"
         >
           <li>
+            <!-- aria-hidden="true" keeps the content visible to
+            the user but hides it for screen readers -->
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2 active"
               href="index.html"
-              ><span>00</span>Home</a
+              ><span aria-hidden="true">00</span>Home</a
             >
           </li>
           <li>
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2"
               href="destination.html"
-              ><span>01</span>Destination</a
+              ><span aria-hidden="true">01</span>Destination</a
             >
           </li>
           <li>
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2"
               href="crew.html"
-              ><span>02</span>Crew</a
+              ><span aria-hidden="true">02</span>Crew</a
             >
           </li>
           <li>
@@ -83,7 +86,8 @@
       </nav>
     </header>
 
-    <div class="grid-container grid-container--home">
+    <!-- main acts as a landmark for screen readers -->
+    <main id="main" class="grid-container grid-container--home">
       <div>
         <h1 class="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1">
           So, you want to travel to
@@ -103,6 +107,6 @@
           >Explore</a
         >
       </div>
-    </div>
+    </main>
   </body>
 </html>
