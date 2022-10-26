@@ -49,6 +49,7 @@
       </button>
       <nav>
         <ul
+          id="primary-navigation"
           class="primary-navigation underline-indicators flex"
           data-visible="false"
         >
@@ -86,39 +87,33 @@
       </nav>
     </header>
 
-    <main
-      id="main"
-      class="grid-container-xxxxxxxxx grid-container--destination"
-    >
-      <div class="uppercase ff-sans-serif numbered-title fs-200">
-        <span>01</span> Pick your destination
-      </div>
-      <div>
-        <img
-          src="./assets/destination/image-moon.png"
-          alt="moon image"
-          class=""
-        />
-      </div>
+    <main id="main" class="grid-container grid-container--destination flow">
+      <h1 class="numbered-title">
+        <span aria-hidden="true">01</span> Pick your destination
+      </h1>
+      <picture>
+        <source srcset="assets/destination/image-moon.webp" type="image/webp" />
+        <img src="assets/destination/image-moon.png" alt="the moon" />
+      </picture>
       <div class="tab-list underline-indicators flex">
         <!-- aria (Assistive Rich Internet Applications) attributes are meant to
                  give screen readers more information about the webpage -->
         <!-- aria-selected means that the element has a selected state -->
         <button
           aria-selected="true"
-          class="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+          class="uppercase ff-sans-cond text-accent letter-spacing-2"
         >
           Moon
         </button>
         <button
           aria-selected="false"
-          class="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+          class="uppercase ff-sans-cond text-accent letter-spacing-2"
         >
           Mars
         </button>
         <button
           aria-selected="false"
-          class="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+          class="uppercase ff-sans-cond text-accent letter-spacing-2"
         >
           Europa
         </button>
@@ -129,29 +124,33 @@
           Titan
         </button>
       </div>
-      <div>
-        <h1
-          class="block-display fs-900 ff-serif text-white uppercase letter-spacing-1"
-        >
-          Moon
-        </h1>
-        <p class="text-accent">
+      <article class="destination-info flow">
+        <h2 class="fs-800 ff-serif uppercase">Moon</h2>
+        <p>
           See our planet as you’ve never seen it before. A perfect relaxing trip
           away to help regain perspective and come back refreshed. While you’re
           there, take in some history by visiting the Luna 2 and Apollo 11
           landing sites.
         </p>
-      </div>
-      <div>
-        <p class="uppercase fs-200 ff-sans-cond letter-spacing-3">
-          Avg. distance
-        </p>
-        384,400 km
-        <p class="uppercase fs-200 ff-sans-cond letter-spacing-3">
-          Est. travel time
-        </p>
-        3 days
-      </div>
+        <div class="destination-meta flex">
+          <div>
+            <h3
+              class="text-accent uppercase fs-200 ff-sans-cond letter-spacing-3"
+            >
+              Avg. distance
+            </h3>
+            <p class="fs-500 ff-serif uppercase">384,400 km</p>
+          </div>
+          <div>
+            <h3
+              class="text-accent uppercase fs-200 ff-sans-cond letter-spacing-3"
+            >
+              Est. travel time
+            </h3>
+            <p class="fs-500 ff-serif uppercase">3 days</p>
+          </div>
+        </div>
+      </article>
     </main>
   </body>
 </html>

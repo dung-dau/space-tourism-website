@@ -12,7 +12,7 @@
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
   --fs-600: 1rem;
-  --fs-500: 1.75rem;
+  --fs-500: 1rem;
   --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
@@ -30,6 +30,7 @@
     --fs-800: 5rem;
     --fs-700: 2.5rem;
     --fs-600: 1.5rem;
+    --fs-500: 1.25rem;
     --fs-400: 1rem;
   }
 }
@@ -41,6 +42,7 @@
     --fs-800: 6.25rem;
     --fs-700: 3.5rem;
     --fs-600: 2rem;
+    --fs-500: 1.75rem;
     --fs-400: 1.125rem;
   }
 }
@@ -147,45 +149,14 @@ select {
   margin-top: var(--flow-space, 1rem);
 }
 
+.flow--space-small {
+  --flow-space: 0.75rem;
+}
+
 .container {
   padding-inline: 2em;
   margin-inline: auto;
   max-width: 80rem;
-}
-
-.grid-container {
-  text-align: center;
-  display: grid;
-  place-items: center;
-  padding-inline: 1rem;
-}
-
-/* ch means characters */
-.grid-container * {
-  max-width: 50ch;
-}
-
-/* needs to be put into a separate media query after 
-   the original grid container and not before */
-@media (min-width: 45em) {
-  .grid-container {
-    text-align: left;
-    column-gap: var(--container-gap, 2rem);
-    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(1rem, 1fr);
-  }
-
-  .grid-container > *:first-child {
-    grid-column: 2;
-  }
-
-  .grid-container > *:last-child {
-    grid-column: 3;
-  }
-
-  .grid-container--home {
-    padding-bottom: 6rem;
-    align-items: end;
-  }
 }
 
 /* visually hides content for sighted users but keeps it 
@@ -210,7 +181,7 @@ on the page for screen readers*/
   z-index: 9999;
   background: hsl(var(--clr-white));
   color: hsl(var(--clr-dark));
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   margin-inline: auto;
   /* moves the box out of the page by default */
   transform: translateY(-100%);
@@ -221,7 +192,7 @@ on the page for screen readers*/
 /* transitions the box into the website when it is
 focused on (usually by keyboard) */
 .skip-to-content:focus {
-  transform: translateX(0);
+  transform: translateX (0);
 }
 
 /* -------------------------- */
@@ -316,6 +287,7 @@ focused on (usually by keyboard) */
   line-height: 1.1;
 }
 
+/* refers to the tag that the number is contained in */
 .numbered-title {
   font-family: var(--ff-sans-cond);
   font-size: var(--fs-500);
@@ -323,15 +295,17 @@ focused on (usually by keyboard) */
   letter-spacing: 4.72px;
 }
 
+/* applies to the actual numbers that are surrounded by span tags */
 .numbered-title span {
   margin-right: 0.5em;
   font-weight: 700;
-  color: hsl(0, 0%, 50%);
+  color: hsl(var(--clr-white) / 0.25);
 }
 
 /* -------------------------- */
 /*         Components         */
 /* -------------------------- */
+/* handles the explore button currently */
 .large-button {
   font-size: 2rem;
   position: relative;
@@ -349,6 +323,8 @@ focused on (usually by keyboard) */
   text-decoration: none;
 }
 
+/* creates the effect of transparent white circle underneath
+   the explore button */
 .large-button::after {
   content: '';
   position: absolute;
@@ -361,6 +337,7 @@ focused on (usually by keyboard) */
   transition: opacity 500ms linear, transform 500ms ease-in-out;
 }
 
+/* occurs after the explore button is hired over */
 .large-button:hover::after,
 .large-button:focus::after {
   opacity: 1;
@@ -370,6 +347,9 @@ focused on (usually by keyboard) */
 /* primary-header */
 
 .logo {
+  /* clamp takes in 3 values: the minimum value, the preferred value and the maximum value */
+  /* in this case, the right and left margins will take on a value between 1.5 rem to 3.5 rem
+     depending on the screen size but prefer 5vw */
   margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
 }
 
@@ -387,30 +367,35 @@ focused on (usually by keyboard) */
   list-style: none;
   padding: 0;
   margin: 0;
+  /* creates the blurring effect for the navigation menu */
   background: hsl(var(--clr-white) / 0.1);
   backdrop-filter: blur(20px);
 }
 
+/* removes the default underline */
 .primary-navigation a {
   text-decoration: none;
 }
 
+/* styles the numbers of the navigation menu */
 .primary-navigation a > span {
   font-weight: 700;
   margin-right: 1em;
 }
 
+/* hides the mobile nav menu when the x is pressed */
 .mobile-nav-toggle {
   display: none;
 }
 
+/* mobile styles for the navigation menu */
 @media (max-width: 35rem) {
   .primary-navigation {
     --underline-gap: 0.5rem;
     /* takes the element out of the flow of the HTML document */
     position: fixed;
     /* puts the navigation above the explore button */
-    z-index: 2;
+    z-index: 1000;
     inset: 0 0 0 30%;
     list-style: none;
     /* shorthand for top right bottom left properties */
@@ -428,7 +413,7 @@ focused on (usually by keyboard) */
   .mobile-nav-toggle {
     display: block;
     position: absolute;
-    z-index: 3;
+    z-index: 2000;
     right: 1rem;
     top: 2rem;
     background: transparent;
@@ -440,7 +425,7 @@ focused on (usually by keyboard) */
     border: 0;
   }
 
-  .mobile-nav-toggle[aria-expanded="true"] {
+  .mobile-nav-toggle[aria-expanded='true'] {
     background-image: url(./assets/shared/icon-close.svg);
   }
 
@@ -455,31 +440,26 @@ focused on (usually by keyboard) */
 }
 
 .underline-indicators * {
-  padding: var(--underline-gap, 1rem) 0;
+  padding: var(--underline-gap, 0.5rem) 0;
   cursor: pointer;
+  background-color: transparent;
 }
 
 @media (min-width: 35em) {
   .primary-navigation {
-    padding-inline: clamp(3rem, 100vw, 7rem);
+    padding-inline: clamp(3rem, 7vw, 7rem);
   }
 }
 
 /* medium screen sizes */
 @media (min-width: 35em) and (max-width: 44.999em) {
-
-  .primary-navigation {
-    /* makes it so that the navigation items are not at the edge of the translucent box */
-    padding-inline: 3rem;
-  }
-
   /* removes the numbers from the navigation menu */
   .primary-navigation a > span {
     display: none;
   }
 }
 
-@media (min-width: 44.999em) {
+@media (min-width: 45em) {
   /* creates the decorative line which is just
   a div with a really small size with its
   border showing */
@@ -493,7 +473,8 @@ focused on (usually by keyboard) */
     covers some of the empty space on the
     navigation menu */
     margin-right: -3rem;
-    background: hsl(var(--clr-white) / .25);
+    background: hsl(var(--clr-white) / 0.25);
+    order: 1;
   }
 
   /* responsible for creating the decorative 
@@ -572,22 +553,226 @@ button:focus {
 /* ------------------------ */
 body {
   background-size: cover;
-  background-position: bottom-center;
+  background-position: bottom center;
 }
-
+/* home */
 .home {
   background-image: url(./assets/home/background-home-mobile.jpg);
 }
 
-@media (min-width: 35em) {
+@media (min-width: 35rem) {
   .home {
     background-position: center center;
     background-image: url(./assets/home/background-home-tablet.jpg);
   }
 }
 
-@media (min-width: 45em) {
+@media (min-width: 45rem) {
   .home {
     background-image: url(./assets/home/background-home-desktop.jpg);
+  }
+}
+
+/* destination */
+.destination {
+  background-image: url(./assets/destination/background-destination-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .destination {
+    background-position: center center;
+    background-image: url(./assets/destination/background-destination-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .destination {
+    background-image: url(./assets/destination/background-destination-desktop.jpg);
+  }
+}
+
+/* crew */
+.crew {
+  background-image: url(./assets/home/background-crew-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .crew {
+    background-position: center center;
+    background-image: url(./assets/crew/background-crew-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .crew {
+    background-image: url(./assets/crew/background-crew-desktop.jpg);
+  }
+}
+
+/* ------------------------ */
+/*          Layout          */
+/* ------------------------ */
+.grid-container {
+  text-align: center;
+  display: grid;
+  place-items: center;
+  padding-inline: 1rem;
+  padding-bottom: 3rem;
+}
+
+/* p:not([class]) means any paragraph tag without any
+   classes attached to it */
+.grid-container p:not([class]) {
+  /* ch means characters */
+  max-width: 50ch;
+}
+
+.numbered-title {
+  grid-area: title;
+}
+
+/* destination layout */
+.grid-container--destination {
+  --flow-space: 2rem;
+  grid-template-areas:
+    'title'
+    'image'
+    'tabs'
+    'content';
+}
+
+.grid-container--destination > picture {
+  grid-area: image;
+  max-width: 60%;
+}
+
+.grid-container--destination > .tab-list {
+  grid-area: tabs;
+}
+
+.destination-info {
+  grid-area: content;
+}
+
+.destination-meta {
+  flex-direction: column;
+  border-top: 1px solid hsl(var(--clr-white) / 0.25);
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.destination-meta p {
+  font-size: 1.75rem;
+}
+
+/* crew layout */
+.grid-container--crew {
+  --flow-space: 2rem;
+  grid-template-areas:
+    'title'
+    'image'
+    'tabs'
+    'content';
+}
+
+.grid-container--crew > picture {
+  grid-area: image;
+  max-width: 60%;
+  border-bottom: 1px solid hsl(var(--clr-white) / 0.1);
+}
+
+.grid-container--crew > .dot-indicators {
+  grid-area: tabs;
+}
+
+.grid-container--crew > .crew-details {
+  grid-area: content;
+}
+
+.crew-details h2 {
+  color: hsl(var(--clr-white) / 0.5);
+}
+
+@media (min-width: 35em) {
+  .numbered-title {
+    justify-self: start;
+    margin-top: 2rem;
+  }
+
+  .destination-meta {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .grid-container--crew {
+    padding-bottom: 0;
+    grid-template-areas:
+      'title'
+      'content'
+      'tabs'
+      'image';
+  }
+}
+
+/* needs to be put into a separate media query after 
+   the original grid container and not before */
+@media (min-width: 45em) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(1rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(
+        1rem,
+        1fr
+      );
+  }
+
+  .grid-container--home {
+    padding-bottom: 6rem;
+    align-items: end;
+  }
+
+  .grid-container--home > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container--home > *:last-child {
+    grid-column: 3;
+  }
+
+  .grid-container--destination {
+    justify-items: start;
+    align-content: start;
+    /* grid-template-areas: sets a literal grid */
+    /* in this case it would be a grid with 3 rows and 4 columns with: 
+      the first and last columns are empty for all rows (noted by a .),
+      the second and third column of the first row are for the title
+      the first column of the second and third row are for the image,
+      the second column of the the second row is for the tabs, and
+      the second column for the third row is for the content*/
+    grid-template-areas:
+      '. title title .'
+      '. image tabs .'
+      '. image content .';
+  }
+
+  .grid-container--destination > picture,
+  .grid-container--crew > picture {
+    max-width: 90%;
+  }
+
+  .destination-meta {
+    --gap: min(6vw, 6rem);
+    justify-content: start;
+  }
+
+  .grid-container--crew {
+    grid-template-areas:
+      '. title title .'
+      '. content image .'
+      '. tabs image .';
+  }
+
+  .grid-container--crew > picture {
+    align-self: end;
   }
 }
