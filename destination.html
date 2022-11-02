@@ -58,14 +58,14 @@
             <!-- aria-hidden="true" keeps the content visible to
             the user but hides it for screen readers -->
             <a
-              class="ff-sans-cond uppercase text-white letter-spacing-2 active"
+              class="ff-sans-cond uppercase text-white letter-spacing-2"
               href="index.html"
               ><span aria-hidden="true">00</span>Home</a
             >
           </li>
           <li>
             <a
-              class="ff-sans-cond uppercase text-white letter-spacing-2"
+              class="ff-sans-cond uppercase text-white letter-spacing-2 active"
               href="destination.html"
               ><span aria-hidden="true">01</span>Destination</a
             >
@@ -119,6 +119,10 @@
         role="tablist"
         aria-label="destination list"
       >
+        <!-- The data-* (or data-image in this case) global attributes are used to
+             allow for information to be exchanged between the HTML and the DOM via
+            Javascript 
+        -->
         <button
           aria-selected="true"
           role="tab"

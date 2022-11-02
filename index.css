@@ -644,6 +644,10 @@ body {
 .grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
+  align-self: start;
+}
+
+scrollbar-gutter {
 }
 
 .grid-container--destination > .tab-list {
@@ -766,6 +770,12 @@ body {
   }
 
   .grid-container--crew {
+    grid-template-columns: minmax(1rem, 1fr) minmax(0, 40rem) minmax(0, 20rem) minmax(
+        1rem,
+        1fr
+      );
+    justify-items: start;
+    align-items: start;
     grid-template-areas:
       '. title title .'
       '. content image .'
